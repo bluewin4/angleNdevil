@@ -17,7 +17,7 @@ async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
 @bot.command(name='coach', help='Generates a response based on the specified personality and conversation context.')
-async def coach(ctx, personality: str, num_messages: int):
+async def coach(ctx, personality: str, num_messages: int = 10):
     try:
         conversation_history = await get_conversation(ctx, num_messages)
         prompt = f'You are an AI language model who has a {personality} personality.\n\n{conversation_history}\nHow would you respond?'
