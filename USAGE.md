@@ -29,10 +29,9 @@
 You can configure the bot's personality and the number of messages to include in the chat context by modifying the following variables in `discord_bot.py`:
 
 ```python
-BOT_PERSONALITY = "friendly and helpful"
-NUM_MESSAGES_IN_PROMPT = 5
-```
+BOT_PERSONALITY_DESCRIPTION = "friendly and helpful"
+CONTEXT_MESSAGE_LIMIT = 5
 
-Update the `BOT_PERSONALITY` variable with a description that suits your desired bot personality. Modify the `NUM_MESSAGES_IN_PROMPT` variable to change the number of recent messages used to generate the bot's response.
+Update the `BOT_PERSONALITY_DESCRIPTION` variable with a description that suits your desired bot personality. Modify the `CONTEXT_MESSAGE_LIMIT` variable to change the number of recent messages used to generate the bot's response.
 
 Once the changes are made, restart the bot to apply the new settings.
