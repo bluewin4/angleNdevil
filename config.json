@@ -1,0 +1,6 @@
+{
+  "bot_token": "YOUR_DISCORD_BOT_TOKEN",
+  "llm_api_key": "YOUR_LLM_API_KEY",
+  "number_of_messages": 3,
+  "personality": "friendly"
+}
