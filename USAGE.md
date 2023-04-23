@@ -34,4 +34,8 @@ CONTEXT_MESSAGE_LIMIT = 5
 
 Update the `BOT_PERSONALITY_DESCRIPTION` variable with a description that suits your desired bot personality. Modify the `CONTEXT_MESSAGE_LIMIT` variable to change the number of recent messages used to generate the bot's response.
 
-Once the changes are made, restart the bot to apply the new settings.
+### Improved Response Quality and Creativity
+
+In this update, we have made significant improvements to the quality and creativity of the bot's responses. The `generate_response` function in discord_bot.py now utilizes more advanced filtering methods to avoid repetition and enhance creativity. These methods are implemented in a separate file called response_filter.py, which contains functions for filtering repetitive content and improving response creativity.
+
+To further customize the bot's responses, you can modify the `response_filter.py` file and update the filtering and creativity functions as needed. After making changes, restart the bot to apply the new settings.
