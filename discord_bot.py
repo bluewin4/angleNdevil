@@ -20,7 +20,7 @@ async def on_ready():
 async def coach(ctx, personality: str, num_messages: int = 10):
     try:
         conversation_history = await get_conversation(ctx, num_messages)
-        prompt = f'You are an AI language model who has a {personality} personality.\n\n{conversation_history}\nHow would you respond?'
+        prompt = f'As an AI language model with a {personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:\n\n{conversation_history}\nHow would a {personality}-like AI respond?'
         response = generate_response(prompt)
         await ctx.send(response)
     except Exception as e:
