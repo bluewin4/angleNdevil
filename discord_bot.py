@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import openai
 from dotenv import load_dotenv
+from response_filter import filter_response
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -49,6 +50,7 @@ def generate_response(prompt: str):
         stop=None,
         temperature=0.8,
     )
-    return response.choices[0].text.strip()
+    generated_text = response.choices[0].text.strip()
+    return filter_response(generated_text)
 
 bot.run(TOKEN)
