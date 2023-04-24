@@ -24,17 +24,18 @@
    ```
 7. [Invite the Discord bot to your server](https://discordpy.readthedocs.io/en/latest/discord.html) and send messages in a text channel to interact with it.
 
-### Configuring the Bot's Personality and Context Length
+### Configuring the Bot's Personality, Context Length, and Language Model Engine
 
-You can configure the bot's personality and the number of messages to include in the chat context by modifying the following variables in `discord_bot.py`:
+You can configure the bot's personality, the number of messages to include in the chat context, and the language model engine by modifying the following variables in `discord_bot.py`:
 
 ```python
 BOT_PERSONALITY_DESCRIPTION = "friendly and helpful"
 CONTEXT_MESSAGE_LIMIT = 5
+```
 
 Update the `BOT_PERSONALITY_DESCRIPTION` variable with a description that suits your desired bot personality. Modify the `CONTEXT_MESSAGE_LIMIT` variable to change the number of recent messages used to generate the bot's response.
 
-### Improved Response Quality and Creativity
+To change the language model engine used by the bot, use the `!select_engine` command followed by the desired engine name (e.g., `!select_engine text-davinci-002`). The bot will use the selected engine to generate responses.
 
 In this update, we have made significant improvements to the quality and creativity of the bot's responses. The `generate_response` function in discord_bot.py now utilizes more advanced filtering methods to avoid repetition and enhance creativity. These methods are implemented in a separate file called response_filter.py, which contains functions for filtering repetitive content and improving response creativity.
 
