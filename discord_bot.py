@@ -12,7 +12,13 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 openai.api_key = OPENAI_API_KEY
 bot = commands.Bot(command_prefix='!')
+selected_engine = "text-davinci-002"
 
+@bot.command(name='select_engine', help='Select the language model engine to use.')
+async def select_engine(ctx, engine: str):
+    global selected_engine
+    selected_engine = engine
+    await ctx.send(f'Language model engine set to: {selected_engine}')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
@@ -43,7 +49,10 @@ async def get_conversation(ctx, num_messages: int):
 
 def generate_response(prompt: str):
     response = openai.Completion.create(
-        engine="text-davinci-002",
+        engine=selected_engine,
+        prompt=prompt,
+        max_tokens=150,
+        n=1,
         prompt=prompt,
         max_tokens=150,
         n=1,
