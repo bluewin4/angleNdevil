@@ -53,9 +53,6 @@ def generate_response(prompt: str):
         prompt=prompt,
         max_tokens=150,
         n=1,
-        prompt=prompt,
-        max_tokens=150,
-        n=1,
         stop=None,
         temperature=0.8,
     )
