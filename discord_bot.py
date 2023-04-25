@@ -26,8 +26,11 @@ openai.api_key = OPENAI_API_KEY
 bot = commands.Bot(command_prefix='!')
 selected_engine = "text-davinci-002"
 
-@bot.command(name='select_engine', help='Select the language model engine to use.')
+@bot.command(name='select_engine', help='Select the language model engine to use. Examples: GPT-4, GPT3.5 Turbo, text-davinci-002.')
 async def select_engine(ctx, engine: str):
+    global selected_engine
+    selected_engine = engine
+    await ctx.send(f'Language model engine set to: {selected_engine}')
     global selected_engine
     selected_engine = engine
     await ctx.send(f'Language model engine set to: {selected_engine}')
