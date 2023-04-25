@@ -35,9 +35,9 @@ async def coach(ctx, num_messages: int = 10):
         conversation_history = await get_conversation(ctx, num_messages)
         prompt = f'As an AI language model with a {selected_personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:\n\n{conversation_history}\nHow would a {selected_personality}-like AI respond?'
         response = generate_response(prompt)
-        await ctx.send(response)
+        await ctx.send(filter_response(response))
     except Exception as e:
-        print(f'Error: {e}')
+        print(f'Error in `coach` command: {e}')
         await ctx.send('An error occurred while generating a response. Please try again.')
 
 async def get_conversation(ctx, num_messages: int):
