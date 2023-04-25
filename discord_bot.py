@@ -19,12 +19,6 @@ async def select_engine(ctx, engine: str):
     async def select_engine(ctx, engine: str):
         selected_engine = engine
         await ctx.send(f'Language model engine set to: {selected_engine}')
-        await ctx.send(f'Language model engine set to: {selected_engine}')
-    selected_engine = engine
-    await ctx.send(f'Language model engine set to: {selected_engine}')
-    await ctx.send(f'Language model engine set to: {selected_engine}')
-    selected_engine = engine
-    await ctx.send(f'Language model engine set to: {selected_engine}')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
@@ -57,13 +51,13 @@ def generate_response(prompt: str):
     response = openai.Completion.create(
         engine=selected_engine,
         prompt=prompt,
-        max_tokens=150,
+        max_tokens=500,
         n=1,
         stop=None,
         temperature=0.8,
     )
-    generated_text = response.choices[0].choices[0].message["content"].strip()
-    generated_text = response.choices[0].text.strip()
+
+    generated_text = response.text.strip()
     return generated_text
 
 bot.run(TOKEN)
