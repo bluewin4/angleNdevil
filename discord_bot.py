@@ -1,23 +1,10 @@
 import os
 import discord
 from discord.ext import commands
-import openai
-import discord
-from discord.ext import commands
-import openai
 from response_filter import filter_response
-from discord.ext import commands
-import openai
 from dotenv import load_dotenv
-from discord.ext import commands
-import openai
-from dotenv import load_dotenv
-from response_filter import filter_response
-
 load_dotenv()
-from response_filter import filter_response
 
-load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
