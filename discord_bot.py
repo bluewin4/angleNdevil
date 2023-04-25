@@ -49,17 +49,29 @@ async def get_conversation(ctx, num_messages: int):
 
 def generate_response(prompt: str):
     try:
-        response = openai.Completion.create(
-            engine=selected_engine,
-            prompt=prompt,
-            max_tokens=500,
-            n=1,
-            stop=None,
-            temperature=0.8,
-        )
+        if "chat" in selected_engine:
+            response = openai.ChatCompletion.create(
+                model=selected_engine,
+                messages=[{"role": "system", "content": f"As an AI language model with a {selected_personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:"}, *conversation_history, {"role": "user", "content": f"How would a {selected_personality}-like AI respond?"}],
+                max_tokens=500,
+                n=1,
+                stop=None,
+                temperature=0.8,
+            )
+        else:
+            response = openai.Completion.create(
+                engine=selected_engine,
+                prompt=prompt,
+                max_tokens=500,
+                n=1,
+                stop=None,
+                temperature=0.8,
+            )
         generated_text = response.choices[0].text.strip()
         return generated_text
     except Exception as e:
+        print(f'Error: {e}')
+        raise
         print(f'Error: {e}')
         raise
 
