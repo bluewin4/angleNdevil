@@ -52,7 +52,7 @@ def generate_response(prompt: str):
         if "chat" in selected_engine:
             response = openai.ChatCompletion.create(
                 model=selected_engine,
-                messages=[{"role": "system", "content": prompt}],
+                messages=[{"role": "system", "content": f"As an AI language model with a {selected_personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:"}, *conversation_history, {"role": "user", "content": f"How would a {selected_personality}-like AI respond?"}],
                 max_tokens=500,
                 n=1,
                 stop=None,
