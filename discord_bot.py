@@ -72,6 +72,6 @@ def generate_response(prompt: str):
         temperature=0.8,
     )
     generated_text = response.choices[0].text.strip()
-    return filter_response(generated_text)
+    return generated_text
 
 bot.run(TOKEN)
