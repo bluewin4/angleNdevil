@@ -63,14 +63,15 @@ async def get_conversation(ctx, num_messages: int):
     return conversation_history
 
 def generate_response(prompt: str):
-    response = openai.Completion.create(
+    response = openai.ChatCompletion.create(
         engine=selected_engine,
-        prompt=prompt,
+        messages=[{"role": "system", "content": prompt}],
         max_tokens=150,
         n=1,
         stop=None,
         temperature=0.8,
     )
+    generated_text = response.choices[0].choices[0].message["content"].strip()
     generated_text = response.choices[0].text.strip()
     return generated_text
 
