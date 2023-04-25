@@ -44,7 +44,7 @@ def improve_creativity(text: str, synonyms: List[str]) -> str:
 
     return ' '.join(creative_text)
 
-def filter_and_improve_responses(response: str, synonyms: List[str]) -> str:
+def filter_response(response: str, synonyms: List[str]) -> str:
     """
     Apply both removing repetitive phrases and improving creativity methods to the given response.
 
@@ -57,8 +57,4 @@ def filter_and_improve_responses(response: str, synonyms: List[str]) -> str:
     """
     filtered_response = remove_repetitive_phrases(response)
     creative_response = improve_creativity(filtered_response, synonyms)
-
-    def filter_response(response: str, synonyms: List[str]) -> str:
-        filtered_response = remove_repetitive_phrases(response)
-        creative_response = improve_creativity(filtered_response, synonyms)
-        return creative_response
+    return creative_response
