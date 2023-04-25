@@ -34,7 +34,7 @@ async def coach(ctx, num_messages: int = 10):
     try:
         conversation_history = await get_conversation(ctx, num_messages)
         prompt = f'As an AI language model with a {selected_personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:\n\n{conversation_history}\nHow would a {selected_personality}-like AI respond?'
-        response = generate_response(prompt)
+        response = generate_response(prompt, conversation_history)
         await ctx.send(filter_response(response))
     except Exception as e:
         print(f'Error in `coach` command: {e}')
@@ -47,12 +47,12 @@ async def get_conversation(ctx, num_messages: int):
         conversation_history += f'{message.author}: {message.content}\n'
     return conversation_history
 
-def generate_response(prompt: str):
+def generate_response(prompt, messages):
     try:
         if "chat" in selected_engine:
             response = openai.ChatCompletion.create(
                 model=selected_engine,
-                messages=[{"role": "system", "content": f"As an AI language model with a {selected_personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:"}, *conversation_history, {"role": "user", "content": f"How would a {selected_personality}-like AI respond?"}],
+                messages=messages,
                 max_tokens=500,
                 n=1,
                 stop=None,
@@ -69,6 +69,12 @@ def generate_response(prompt: str):
             )
         generated_text = response.choices[0].text.strip()
         return generated_text
+    except Exception as e:
+        print(f'Error: {e}')
+        return generated_text
+    except Exception as e:
+        print(f'Error: {e}')
+        raise
     except Exception as e:
         print(f'Error: {e}')
         raise
