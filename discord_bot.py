@@ -1,5 +1,9 @@
 import os
 import discord
+import openai
+from discord.ext import commands
+from response_filter import filter_response
+import discord
 from discord.ext import commands
 from response_filter import filter_response
 from dotenv import load_dotenv
