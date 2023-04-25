@@ -16,9 +16,9 @@ selected_engine = "text-davinci-003"
 
 @bot.command(name='select_engine', help='Select the language model engine to use. Examples: gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301')
 async def select_engine(ctx, engine: str):
-    async def select_engine(ctx, engine: str):
-        selected_engine = engine
-        await ctx.send(f'Language model engine set to: {selected_engine}')
+    global selected_engine
+    selected_engine = engine
+    await ctx.send(f'Language model engine set to: {selected_engine}')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
@@ -48,16 +48,19 @@ async def get_conversation(ctx, num_messages: int):
     return conversation_history
 
 def generate_response(prompt: str):
-    response = openai.Completion.create(
-        engine=selected_engine,
-        prompt=prompt,
-        max_tokens=500,
-        n=1,
-        stop=None,
-        temperature=0.8,
-    )
-
-    generated_text = response.text.strip()
-    return generated_text
+    try:
+        response = openai.Completion.create(
+            engine=selected_engine,
+            prompt=prompt,
+            max_tokens=500,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+        generated_text = response.choices[0].text.strip()
+        return generated_text
+    except Exception as e:
+        print(f'Error: {e}')
+        raise
 
 bot.run(TOKEN)
