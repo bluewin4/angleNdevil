@@ -58,4 +58,7 @@ def filter_and_improve_responses(response: str, synonyms: List[str]) -> str:
     filtered_response = remove_repetitive_phrases(response)
     creative_response = improve_creativity(filtered_response, synonyms)
 
-    return creative_response
+    def filter_response(response: str, synonyms: List[str]) -> str:
+        filtered_response = remove_repetitive_phrases(response)
+        creative_response = improve_creativity(filtered_response, synonyms)
+        return creative_response

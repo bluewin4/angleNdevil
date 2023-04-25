@@ -2,7 +2,13 @@ import os
 import discord
 from discord.ext import commands
 import openai
+from response_filter import filter_response
+from discord.ext import commands
+import openai
 from dotenv import load_dotenv
+from response_filter import filter_response
+
+load_dotenv()
 from response_filter import filter_response
 
 load_dotenv()
