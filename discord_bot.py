@@ -16,9 +16,9 @@ selected_engine = "text-davinci-003"
 
 @bot.command(name='select_engine', help='Select the language model engine to use. Examples: gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301')
 async def select_engine(ctx, engine: str):
-    async def select_engine(ctx, engine: str):
-        selected_engine = engine
-        await ctx.send(f'Language model engine set to: {selected_engine}')
+    global selected_engine
+    selected_engine = engine
+    await ctx.send(f'Language model engine set to: {selected_engine}')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
@@ -35,9 +35,9 @@ async def coach(ctx, num_messages: int = 10):
         conversation_history = await get_conversation(ctx, num_messages)
         prompt = f'As an AI language model with a {selected_personality} personality, embody the characteristics and traits of this personality while responding to the following conversation:\n\n{conversation_history}\nHow would a {selected_personality}-like AI respond?'
         response = generate_response(prompt)
-        await ctx.send(response)
+        await ctx.send(filter_response(response))
     except Exception as e:
-        print(f'Error: {e}')
+        print(f'Error in `coach` command: {e}')
         await ctx.send('An error occurred while generating a response. Please try again.')
 
 async def get_conversation(ctx, num_messages: int):
@@ -48,16 +48,19 @@ async def get_conversation(ctx, num_messages: int):
     return conversation_history
 
 def generate_response(prompt: str):
-    response = openai.Completion.create(
-        engine=selected_engine,
-        prompt=prompt,
-        max_tokens=500,
-        n=1,
-        stop=None,
-        temperature=0.8,
-    )
-
-    generated_text = response.text.strip()
-    return generated_text
+    try:
+        response = openai.Completion.create(
+            engine=selected_engine,
+            prompt=prompt,
+            max_tokens=500,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+        generated_text = response.choices[0].text.strip()
+        return generated_text
+    except Exception as e:
+        print(f'Error: {e}')
+        raise
 
 bot.run(TOKEN)
