@@ -21,3 +21,5 @@ I managed to get this thing working with 1 issue and a typo fix (the bot called 
 When building something in AutoPR the first issue should be detailed and can ask for several different things. In fact asking multiple aspects of a project at once can help the AI understand the direction you are trying to build into so that the choices made will work in the long run. I'm going to try implementing a road-map into my issue requests so the AI can see my long running things I wish to work on. Talking with GPT-4 about file archtiecture beforehand and putting those into the issue can also help focus. 
 
 It also REALLY likes to import things, so if you let it vibe then you will slowly find yourself getting 3-5 copies of the same import. You can either just iteratively feed errors back into the system or actually intelligently code with it as another developer. I'm not that elegent. Had a couple false starts, but rerunning this is enough to get the desired result.
+
+Don't clog up the API with other tasks at the same time, it causes a bunch of errors. 
