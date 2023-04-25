@@ -60,18 +60,9 @@ def generate_response(messages):
         generated_text = response.choices[0].text.strip()
         return generated_text
     except Exception as e:
+    except Exception as e:
+        print(f'Error: {e}')
         generated_text = response.choices[0].text.strip()
         return generated_text
-    except Exception as e:
-        print(f'Error: {e}')
-        return generated_text
-    except Exception as e:
-        print(f'Error: {e}')
-        raise
-    except Exception as e:
-        print(f'Error: {e}')
-        raise
-        print(f'Error: {e}')
-        raise
 
 bot.run(TOKEN)
