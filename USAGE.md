@@ -34,8 +34,8 @@ CONTEXT_MESSAGE_LIMIT = 5
 
 Update the `BOT_PERSONALITY_DESCRIPTION` variable with a description that suits your desired bot personality. Modify the `CONTEXT_MESSAGE_LIMIT` variable to change the number of recent messages used to generate the bot's response.
 
-### Improved Response Quality and Creativity
+### The !coach Command
 
-In this update, we have made significant improvements to the quality and creativity of the bot's responses. The `generate_response` function in discord_bot.py now utilizes more advanced filtering methods to avoid repetition and enhance creativity. These methods are implemented in a separate file called response_filter.py, which contains functions for filtering repetitive content and improving response creativity.
+The `!coach` command now uses the `v1/chat/completions` endpoint for chat models, which improves the quality and creativity of the bot's responses. To utilize the `!coach` command, simply prefix your message with `!coach`, and the bot will generate a response using the chat models and the provided conversation history.
 
-To further customize the bot's responses, you can modify the `response_filter.py` file and update the filtering and creativity functions as needed. After making changes, restart the bot to apply the new settings.
+If you want to further customize the bot's responses, you can modify the `response_filter.py` file and update the filtering and creativity functions as needed. After making changes, restart the bot to apply the new settings.
