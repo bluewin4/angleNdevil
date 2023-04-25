@@ -9,8 +9,9 @@ Made with [AutoPR](https://github.com/irgolic/AutoPR)
 </div>
 
 # Discord Bot Overview
-This repository also includes a Discord bot that can coach conversation based on a specified personality. The bot uses a Large Language Model to generate creative and high-quality responses with advanced filtering techniques, avoiding repetition and better interacting with users by considering the configured personality and the recent conversation context.
-# Usage
+Discord Bot Overview
+This repository also includes a Discord bot that can coach conversation based on a specified personality. The bot uses a Large Language Model and the v1/chat/completions endpoint to generate creative and high-quality responses with advanced filtering techniques, avoiding repetition and better interacting with users by considering the configured personality and the recent conversation context.
+Usage
 Please see [USAGE.md](https://github.com/irgolic/AutoPR/blob/main/USAGE.md) for more information on using the AutoPR tool or the Discord bot.
 
 If you'd like to try out GPT-4 AutoPR or the Discord bot, you can make an issue in this repository, and I'll run it manually.
