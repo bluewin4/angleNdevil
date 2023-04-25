@@ -15,10 +15,13 @@ selected_engine = "text-davinci-003"
 
 @bot.command(name='select_engine', help='Select the language model engine to use. Examples: text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001')
 async def select_engine(ctx, engine: str):
-    global selected_engine
+    async def select_engine(ctx, engine: str):
+        selected_engine = engine
+        await ctx.send(f'Language model engine set to: {selected_engine}')
+        await ctx.send(f'Language model engine set to: {selected_engine}')
     selected_engine = engine
     await ctx.send(f'Language model engine set to: {selected_engine}')
-    global selected_engine
+    await ctx.send(f'Language model engine set to: {selected_engine}')
     selected_engine = engine
     await ctx.send(f'Language model engine set to: {selected_engine}')
 @bot.event
