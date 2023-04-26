@@ -10,10 +10,10 @@ class TestDiscordBot(unittest.TestCase):
     def test_generate_response_with_chat_model(self):
         with patch('openai.api_call') as mock_api_call:
             mock_api_call.return_value = {'choices': [{'text': 'Test response.'}]}
-            response = generate_response(prompt="Test prompt.", model="gpt-4-chat", messages=[])
+            response = generate_response(prompt="Test prompt.", model="gpt-4-chat", messages=[{'role': 'system', 'content': 'Starting a conversation.'}])
             self.assertEqual(response, 'Test response.')
             mock_api_call.assert_called_once_with(
-                'v1/chat/completions', data={'messages': [], 'model': 'gpt-4-chat', 'prompt': 'Test prompt.'}
+                'v1/engines/gpt-4-chat/completions', data={'messages': [{'role': 'system', 'content': 'Starting a conversation.'}], 'model': 'gpt-4-chat', 'prompt': 'Test prompt.'}
             )
 
     def test_generate_response_with_non_chat_model(self):
@@ -22,6 +22,8 @@ class TestDiscordBot(unittest.TestCase):
             response = generate_response(prompt="Test prompt.", model="gpt-4", messages=[])
             self.assertEqual(response, 'Test response.')
             mock_api_call.assert_called_once_with(
+                'v1/engines/gpt-4/completions', data={'messages': [], 'model': 'gpt-4', 'prompt': 'Test prompt.'}
+            )
                 'v1/engines/gpt-4/completions', data={'messages': [], 'model': 'gpt-4', 'prompt': 'Test prompt.'}
             )
 def test_coach_command_with_valid_input(self):
