@@ -42,7 +42,7 @@ async def coach(ctx, num_messages: int = 10):
 
 async def get_conversation(ctx, num_messages: int):
     messages = await ctx.channel.history(limit=num_messages).flatten()
-    conversation_history = [{"role": "system" if message.author.bot else "user", "content": message.content} for message in messages]
+    conversation_history = [{"role": "system" if message.author.bot else "user", "content": message.content} for message in reversed(messages)]
     return conversation_history
 
 def generate_response(prompt, messages):
