@@ -71,14 +71,6 @@ def generate_response(prompt, messages):
         return generated_text
     except Exception as e:
         print(f'Error: {e}')
-        return generated_text
-    except Exception as e:
-        print(f'Error: {e}')
-        raise
-    except Exception as e:
-        print(f'Error: {e}')
-        raise
-        print(f'Error: {e}')
         raise
 
 bot.run(TOKEN)
