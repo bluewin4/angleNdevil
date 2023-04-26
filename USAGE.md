@@ -36,6 +36,6 @@ Update the `BOT_PERSONALITY_DESCRIPTION` variable with a description that suits 
 
 ### The !coach Command
 
-The `!coach` command now uses the `v1/chat/completions` endpoint for chat models, which improves the quality and creativity of the bot's responses. To utilize the `!coach` command, simply prefix your message with `!coach`, and the bot will generate a response using the chat models and the provided conversation history.
+The `!coach` command now utilizes the `v1/chat/completions` endpoint for chat models, enhancing the quality and creativity of the bot's responses. To use the `!coach` command, prefix your message with `!coach`, and the bot will generate a response based on the chat models and the provided conversation history as an array of messages.
 
-If you want to further customize the bot's responses, you can modify the `response_filter.py` file and update the filtering and creativity functions as needed. After making changes, restart the bot to apply the new settings.
+To further customize the bot's responses, modify the `response_filter.py` file and update the filtering and creativity functions as needed. After making changes, restart the bot to implement the new settings.
