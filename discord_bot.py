@@ -42,8 +42,8 @@ async def coach(ctx, num_messages: int = 10):
 
 async def get_conversation(ctx, num_messages: int):
     messages = await ctx.channel.history(limit=num_messages).flatten()
-    conversation_history = [f'{message.author}: {message.content}' for message in messages]
-    return "\n".join(conversation_history)
+    conversation_history = [{"role": "system" if message.author.bot else "user", "content": message.content} for message in messages]
+    return conversation_history
 
 def generate_response(prompt, messages):
     try:
@@ -54,7 +54,7 @@ def generate_response(prompt, messages):
             n=1,
             stop=None,
             temperature=0.8,
-           )
+        )
         generated_text = response.choices[0].text.strip()
         return generated_text
     except Exception as e:
