@@ -47,15 +47,14 @@ async def get_conversation(ctx, num_messages: int):
 
 def generate_response(prompt, messages):
     try:
-        response = openai.ChatCompletion.create(
-            model=selected_engine,
-            messages=messages,
-            max_tokens=500,
-            n=1,
-            stop=None,
+        response = openai.Completion.create(
+            engine=selected_engine,
+            prompt=prompt,
+            max_tokens=150,
             temperature=0.8,
+            n=1
         )
-        generated_text = response.choices[0].text.strip()
+        generated_text = response["choices"][0]["text"].strip()
         return generated_text
     except Exception as e:
         print(f'Error: {e}')
