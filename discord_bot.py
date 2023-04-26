@@ -41,11 +41,11 @@ async def coach(ctx, num_messages: int = 10):
         await ctx.send('An error occurred while generating a response. Please try again.')
 
 async def get_conversation(ctx, num_messages: int):
-    messages = await ctx.channel.history(limit=num_messages).flatten()
-    conversation_history = ''
-    for message in reversed(messages):
-        conversation_history += f'{message.author}: {message.content}\n'
-    return conversation_history
+    messages = (await ctx.channel.history(limit=num_messages).flatten()).split("\n")
+    conversation_history = []
+    for message in messages:
+        conversation_history.append(f'{message.author}: {message.content}\n')
+    return "\n".join(conversation_history)
 
 def generate_response(prompt, messages):
     try:
