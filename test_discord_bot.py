@@ -24,6 +24,18 @@ class TestDiscordBot(unittest.TestCase):
             mock_api_call.assert_called_once_with(
                 'v1/engines/gpt-4/completions', data={'messages': [], 'model': 'gpt-4', 'prompt': 'Test prompt.'}
             )
+def test_coach_command_with_valid_input(self):
+    with patch('discord_bot.generate_response') as mock_generate_response:
+        mock_generate_response.return_value = 'Coaching advice'
+        response = self.bot.process_command('bluerune#7459: !coach 1')
+        self.assertEqual(response, 'Coaching advice')
+        mock_generate_response.assert_called_once_with(prompt='1', model='gpt-4-chat', messages=[])
+
+def test_coach_command_with_invalid_input(self):
+    with patch('discord_bot.generate_response') as mock_generate_response:
+        response = self.bot.process_command('bluerune#7459: !coach invalid')
+        self.assertEqual(response, 'Invalid input for !coach command. Please enter a number.')
+        mock_generate_response.assert_not_called()
 
 if __name__ == '__main__':
     unittest.main()
