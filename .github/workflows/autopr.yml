@@ -30,12 +30,10 @@ jobs:
         ref: main
         fetch-depth: 1
     - name: AutoPR
-      uses: irgolic/AutoPR@progress-ux-upgrade
+      uses: docker://ghcr.io/irgolic/autopr:latest
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       with:
-        event: ${{ toJson(github.event) }}
-        event_name: ${{ github.event_name }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         codegen_agent_config: |
           iterations_per_commit: 3
