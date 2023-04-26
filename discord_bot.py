@@ -42,10 +42,8 @@ async def coach(ctx, num_messages: int = 10):
 
 async def get_conversation(ctx, num_messages: int):
     messages = await ctx.channel.history(limit=num_messages).flatten()
-    conversation_history = ''
-    for message in reversed(messages):
-        conversation_history += f'{message.author}: {message.content}\n'
-    return conversation_history
+    conversation_history = [f'{message.author}: {message.content}' for message in messages]
+    return "\n".join(conversation_history)
 
 def generate_response(prompt, messages):
     try:
